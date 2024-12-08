@@ -5,11 +5,11 @@ import {write_client} from '@/sanity/lib/write'
 
 
 const View = async ({ id }: { id: string }) => {
-  const { views: totalViews } = await client
-    .withConfig({ useCdn: false })
-    .fetch(STARTUP_VIEWS_QUERY, { id });
-
-
+    const { views: totalViews } = await client
+      .withConfig({ useCdn: false })
+      .fetch(STARTUP_VIEWS_QUERY, { id });
+  
+    
     await write_client
     .patch(id)
     .set({ views: totalViews + 1 })
@@ -28,3 +28,5 @@ const View = async ({ id }: { id: string }) => {
   );
 };
 export default View;
+
+

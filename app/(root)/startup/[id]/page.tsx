@@ -16,6 +16,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   const post = await client.fetch(STARTUP_BY_ID_QUERY, { id });
 
+  // @ts-ignore
   return (
     <>
       <section className="pink_container !min-h-[230px]">
