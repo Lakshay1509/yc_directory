@@ -3,15 +3,24 @@ import SearchForm from "../../components/ui/SearchForm";
 import StartupCard from "@/components/ui/StartupCard";
 import {client} from '@/sanity/lib/client'
 import {StartupTypeCard} from '../../components/ui/StartupCard'
+import { sanityFetch } from "@/sanity/lib/live";
+import { auth } from "@/auth";
 
-export default async function Home({searchParams}: {searchParams: Promise <{query: string}>}) {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ query?: string }>;
+}) {
+  const query = (await searchParams).query;
+  const params = { search: query || null };
+  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
 
-    const query = (await searchParams).query;
-    const posts = await client.fetch(STARTUPS_QUERY); 
+  
    
   return (
     <>
       <section className="pink_container">
+      <p className="tag">Pitches, Investors, Founders</p>
       <h1 className="heading">Turning Big Ideas Into Thriving Startups</h1>
       <p className="sub-heading !max-w-3xl">
         Submit Ideas, Vote on Pitches, and Invest in the Next Big Thing
