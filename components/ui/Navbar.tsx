@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
 import { auth, signOut, signIn } from "@/auth";
-import { getProviders } from "next-auth/react";
 import { BadgePlus, LogOut } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { FaGithub } from "react-icons/fa";

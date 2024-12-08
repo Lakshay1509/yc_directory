@@ -1,5 +1,4 @@
-import { Button } from "@/components/ui/button";
-import StartupCard from "@/components/ui/StartupCard";
+
 import {Skeleton} from "@/components/ui/Skeleton"
 import { formatDate } from "@/lib/utils";
 import { client } from "@/sanity/lib/client";

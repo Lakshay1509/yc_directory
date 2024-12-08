@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Form from "next/form"
 import SearchformReset from './SearchformReset'
 import { Search } from 'lucide-react'
