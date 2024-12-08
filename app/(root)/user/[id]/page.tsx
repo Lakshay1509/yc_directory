@@ -5,9 +5,9 @@ import Image from 'next/image';
 import { auth } from '@/auth';
 import { notFound } from 'next/navigation';
 import { StartupCardSkeleton } from '@/components/ui/StartupCard';
-import UserStartups from '@/components/UserStartups';
+import UserStartups from '@/components/ui/UserStartups';
 
-const page = async ({params} : {params : {id:string}}) => {
+const page = async ({params} : {params : Promise<{ id: string }>}) => {
 
     const id = (await params).id;
     
