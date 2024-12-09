@@ -1,12 +1,12 @@
-
 import {Skeleton} from "@/components/ui/Skeleton"
 import { formatDate } from "@/lib/utils";
 import { client } from "@/sanity/lib/client";
-import { STARTUP_BY_ID_QUERY } from "@/sanity/lib/queries";
+import { COMMENTS_BY_STARTUP_QUERY, STARTUP_BY_ID_QUERY} from "@/sanity/lib/queries";
 import React, { Suspense } from "react";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 import View from "@/components/ui/View";
+import Comment from "@/components/ui/Comment";
 
 
 export const experimental_ppr = true;
@@ -15,6 +15,9 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id;
 
   const post = await client.fetch(STARTUP_BY_ID_QUERY, { id });
+
+  const comments = await client.fetch(COMMENTS_BY_STARTUP_QUERY, { id });
+  
 
   // @ts-ignore
   return (
@@ -75,8 +78,25 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
         <Suspense fallback={<Skeleton className="view_skeleton" />}>
           <View id={id} />
         </Suspense>
+        
+
+      <div className="space-y-5 mt-10 max-w-4xl mx-auto">
+        {comments.length > 0 ? (
+          comments.map((comment:any)=>{
+            return <Comment key={comment._id} comment={comment} />
+          })
+        ):(
+          <p>No comments yet</p>
+        )}
+
+
+     
+    
+
+      </div>
        
       </section>
+      
     </>
   );
 };

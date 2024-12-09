@@ -125,6 +125,27 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
+export type Comment = {
+  _id: string;
+  _type: "comment";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  description?: string;
+  author?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "author";
+  };
+  startup?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "startup";
+  };
+};
+
 export type Startup = {
   _id: string;
   _type: "startup";
@@ -168,5 +189,5 @@ export type Author = {
 
 export type Markdown = string;
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | SanityAssetSourceData | Startup | Slug | Author | Markdown;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | SanityAssetSourceData | Comment | Startup | Slug | Author | Markdown;
 export declare const internalGroqTypeReferenceTo: unique symbol;

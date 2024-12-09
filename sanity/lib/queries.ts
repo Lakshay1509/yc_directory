@@ -75,3 +75,16 @@ export const STARTUPS_BY_AUTHOR_QUERY =
   category,
   image,
 }`);
+
+export const COMMENTS_BY_STARTUP_QUERY = 
+defineQuery(`
+  *[_type=="comment" && startup._ref == $id]{
+  _id,
+  description,
+    author->{
+      name,image
+    },
+}`)
+
+
+
