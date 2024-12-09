@@ -8,7 +8,7 @@ export const write_client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true,
+  useCdn: false,
   token: writeToken,
 })
 
