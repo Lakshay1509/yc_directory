@@ -123,17 +123,27 @@
         @apply max-w-3xl w-full min-h-[80px] bg-white border-[3px] border-black rounded-[80px] text-[24px] mt-8 px-5 flex flex-row items-center gap-5;
     }
 
+    .comment-form {
+        @apply w-full min-h-[20px] mb-[30px] text-[15px] mt-3 px-2 flex flex-row items-center gap-5 border-b border-black;
+    }
+
     .search-input {
+        @apply flex-1 font-bold placeholder:font-semibold placeholder:text-black-100 w-full h-auto outline-none;
+    }
+    .comment-input {
         @apply flex-1 font-bold placeholder:font-semibold placeholder:text-black-100 w-full h-auto outline-none;
     }
 
     .search-btn {
         @apply size-[50px] rounded-full bg-black flex justify-center items-center !important;
     }
+    .comment-btn {
+        @apply size-[38px] p-[1px] mb-[8px] rounded-full bg-black flex justify-center items-center !important;
+    }
 
     /* startupcard */
     .startup-card {
-        @apply bg-white border-[3px] border-black py-6 px-5 rounded-[22px]  transition-all duration-500  hover:bg-primary-100;
+        @apply bg-white border-[2px] border-black py-6 px-5 rounded-[22px]  transition-all duration-500  hover:bg-primary-100;
     }
 
     .startup-card_date {

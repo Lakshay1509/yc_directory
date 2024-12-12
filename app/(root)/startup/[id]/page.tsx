@@ -7,6 +7,9 @@ import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 import View from "@/components/ui/View";
 import Comment from "@/components/ui/Comment";
+import CommentForm from "@/components/ui/CommentForm";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
+
 
 
 export const experimental_ppr = true;
@@ -16,7 +19,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   const post = await client.fetch(STARTUP_BY_ID_QUERY, { id });
 
-  const comments = await client.fetch(COMMENTS_BY_STARTUP_QUERY, { id });
+  const {data:comments} = await sanityFetch({query:COMMENTS_BY_STARTUP_QUERY,params:{id}});
   
 
   // @ts-ignore
@@ -80,7 +83,9 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
         </Suspense>
         
 
-      <div className="space-y-5 mt-10 max-w-4xl mx-auto">
+      <div className=" mt-10 max-w-4xl mx-auto">
+      <p className="text-20-medium mb-[10px]">Comments : {comments.length}</p>
+      <CommentForm id={id}/>
         {comments.length > 0 ? (
           comments.map((comment:any)=>{
             return <Comment key={comment._id} comment={comment} />
@@ -88,6 +93,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
         ):(
           <p>No comments yet</p>
         )}
+
 
 
      

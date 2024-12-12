@@ -78,12 +78,13 @@ export const STARTUPS_BY_AUTHOR_QUERY =
 
 export const COMMENTS_BY_STARTUP_QUERY = 
 defineQuery(`
-  *[_type=="comment" && startup._ref == $id]{
+  *[_type=="comment" && startup._ref == $id] | order(_createdAt desc){
   _id,
   description,
     author->{
       name,image
     },
+  _createdAt
 }`)
 
 

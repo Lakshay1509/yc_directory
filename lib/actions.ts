@@ -56,3 +56,46 @@ export const createPitch = async (
     });
   }
 };
+
+export const createComment = async (form:FormData,id:string)=>{
+  const session = await auth();
+
+  if (!session)
+    return parseServerActionResponse({
+      error: "Not signed in",
+      status: "ERROR",
+    });
+  
+    
+    const {comment} = Object.fromEntries( Array.from(form));
+
+    
+
+    try{
+      const commentData = {
+        description:comment,
+        author: {
+          _type: "reference",
+          _ref: session?.id,
+        }, 
+        startup:{
+          _type: "reference",
+          _ref: id,
+        }
+    }
+    const result = await write_client.create({ _type: "comment", ...commentData });
+    return parseServerActionResponse({
+      ...result,
+      error: "",
+      status: "SUCCESS",
+    });
+  }catch(error){
+    console.log(error);
+
+    return parseServerActionResponse({
+      error: JSON.stringify(error),
+      status: "ERROR",
+    });
+  }
+
+}
